@@ -1,3 +1,5 @@
 const hc = require('./hc.controller');
 const customers = require('./customers.controller');
-module.exports = { hc, customers };
+const quiz = require('./quiz.controller');
+
+module.exports = { hc, customers, quiz };
