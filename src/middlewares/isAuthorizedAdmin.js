@@ -45,7 +45,6 @@ module.exports = catchAsync(async (req, res, next) => {
     dataValues: { isAdmin, isActive },
   } = await usersRepository.getById(decoded.sub.id);
 
-  // console.log('isAdmin:', isAdmin);
   if (!isAdmin) {
     throw new ApplicationError(
       messages.invalidAuthFormat,

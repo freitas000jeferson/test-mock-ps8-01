@@ -1,63 +1,26 @@
-# timesete-back
+# DICAS
 
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+### Como achar uma massa de teste?
 
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-analytics.js"></script>
+- nos documentos das coleções do FIREBASE tem o como identificador o número de telefone da massa de teste;
+- dentro de cada documento do FIREBASE tem os dados da massa te teste (nº telefone, nº documento, nome, endereço);
 
-<script>
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  var firebaseConfig = {
-    apiKey: "AIzaSyDMMRLFWltiU63LOOjwXAjNvTeJ8GALGqw",
-    authDomain: "backend-timesete-mundo-diverso.firebaseapp.com",
-    projectId: "backend-timesete-mundo-diverso",
-    storageBucket: "backend-timesete-mundo-diverso.appspot.com",
-    messagingSenderId: "829666527582",
-    appId: "1:829666527582:web:ab9410bc0a052bb5f427cf",
-    measurementId: "G-DQQR2YWZFG"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
-</script>
-<!--  -->
+## O que alterar para meu teste
 
-service firebase.storage {
-match /b/{bucket}/o {
-match /{allPaths=\*\*} {
-allow read, write: if request.auth != null;
-}
-}
-}
-[X] User
-[X] Token
-[X] Background
-[X] CoverPhoto
-[X] Category
-[X] Shape
-[X] Color
-[X] Character
-[X] Part
-[X] Member
-[X] Content
-[X] Article
-[.] Challenge
-[.] Goal
-[.] Questionpass
-[.] alter table users
-https://www.getpostman.com/collections/3cff4e1af5ff24405c0d
-heroku config:set S3_KEY=8N029N81 S3_SECRET=9s83109d3+583493190
+### Coleção de costumers do FIREBASE
 
-[V] [find all] parts com category, color, shape
-[V] [find all 2 formato] parts com category, color, shape
-[V] [find all] user com lista character, member, part, category, content, article
-[V] [find/id] user com character, member, part, category, content, article
-[V] [find] content com article, category
-[V] [create] personagem {parts:[1,2,3,4], ispublic}
+=> buscar alterar os seguintes campos pra customizar seu teste:
 
-Qual o sobrenome da avó,
-Qual o nome do primeiro animal de estimação
-cor favorita
+- addresses > flagValidAddress:
+  - [tipo: boolean] true: endereço já esta completo;
+  - [tipo: boolean] false: endereço incompleto;
+- status:
+  - [tipo: string] 10: para iniciar o fluxo;
+
+### Coleção de quiz do FIREBASE
+
+=> buscar alterar os seguintes campos pra customizar seu teste:
+
+- questionnaireId:
+  - [tipo: null] null: para indicar que não tem quiz pendente;
+  - [tipo: string] 123123: um valor aleatório pra indicar q há quiz;

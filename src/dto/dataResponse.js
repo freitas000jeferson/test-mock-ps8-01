@@ -5,14 +5,12 @@ class DataResponse {
     this.apiVersion = '1;2020-09-04';
     this.transactionId = data.transactionId;
     this.data = new Customers(data);
-    this.phoneNumber = data.phoneNumber;
   }
 
-  toFirebase() {
+  saveFirebase() {
     return {
-      ...this.data.toMap(),
+      ...this.data.toMapSaveFirebase(),
       transactionId: this.transactionId,
-      phoneNumber: this.phoneNumber,
     };
   }
 
@@ -23,6 +21,10 @@ class DataResponse {
       transactionId: this.transactionId,
       data: this.data.toMap(),
     };
+  }
+
+  setObjectToMap(obj) {
+    return this.saveFirebase();
   }
 }
 

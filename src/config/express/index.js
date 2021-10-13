@@ -39,7 +39,7 @@ app.use(xss());
 Object.keys(routes).forEach((key) =>
   app.use(`/api/${version}/${key}`, routes[key])
 );
-Object.keys(routes).forEach((key) => console.log(`/api/${version}/${key}`));
+// Object.keys(routes).forEach((key) => console.log(`/api/${version}/${key}`));
 
 app.use((req, res, next) => {
   next(new ApplicationError(messages.notFound('route'), StatusCodes.NOT_FOUND));

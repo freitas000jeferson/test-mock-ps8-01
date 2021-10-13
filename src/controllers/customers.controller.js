@@ -2,6 +2,7 @@
 const { catchAsync } = require('../utils');
 const firebase = require('../config/firebase');
 const DataResponse = require('../dto/dataResponse');
+const NotifyCustomerUpdate = require('../dto/notifyCustomerUpdate');
 
 const firestore = firebase.firestore();
 
@@ -10,14 +11,12 @@ module.exports = {
     try {
       const data = req.body;
       const { phoneNumber } = req.body;
-      console.log(phoneNumber);
       const file = new DataResponse(data);
-
       await firestore
         .collection('customers')
         .doc(`${phoneNumber}`)
-        .set(file.toFirebase());
-      res.send('Record saved successfuly');
+        .set(file.saveFirebase());
+      res.send('Record saved successfuly: CUSTOMERS');
     } catch (error) {
       res.status(400).send(error.message);
     }
@@ -50,16 +49,18 @@ module.exports = {
     try {
       const { data } = req.body;
       const { contacts } = data;
+      const notifyCustomerUpdate = new NotifyCustomerUpdate(data);
+
       if (contacts.length === 0)
         return res.status(400).send('Not phone number');
       const [{ phoneNumber }] = contacts;
       const file = await firestore.collection('customers').doc(phoneNumber);
-      const customer = await file.get();
-      if (!customer.data()) return res.status(404).send('Customer not found');
-      const obj = Object.assign(customer.data(), data);
-      await file.set({
-        ...obj,
-      });
+      const response = await file.get();
+      if (!response.data()) return res.status(404).send('Customer not found');
+
+      const dataResponse = new DataResponse(response.data());
+      dataResponse.data.update(notifyCustomerUpdate.toMap());
+      await file.set(dataResponse.saveFirebase());
       return res.send({
         apiVersion: '1; 2020-06-11',
         transactionId: 'e6e4e0f4-089d-4194-845e-78f45426f7c7',

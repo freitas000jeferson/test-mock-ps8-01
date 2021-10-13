@@ -1,50 +1,74 @@
+const Address = require('./address');
+
 class Customers {
   constructor({
-    personType,
-    category,
+    // personType,
+    // birthdate,
+    // motherName,
+    // nationality,
+    // socioeconomics,
+    // category,
     name,
-    birthdate,
-    motherName,
-    nationality,
     documents,
     contacts,
     addresses,
-    socioeconomics,
     customerId,
     status,
     quantityAttemptsRegister,
+    categoryId,
+    phoneNumber,
+    documentNumber,
   }) {
-    this.personType = personType;
-    this.category = category || [];
-    this.name = name;
-    this.birthdate = birthdate;
-    this.motherName = motherName;
-    this.nationality = nationality || '';
+    // this.birthdate = birthdate;
+    // this.motherName = motherName;
+    // this.nationality = nationality || '';
+    // this.personType = personType;
+    // this.socioeconomics = socioeconomics || {};
+    // this.category = category || [];
+    this.name = name || '';
     this.documents = documents || [];
     this.contacts = contacts || [];
-    this.addresses = addresses || {};
-    this.socioeconomics = socioeconomics || {};
-    this.customerId = customerId;
-    this.status = status;
-    this.quantityAttemptsRegister = quantityAttemptsRegister;
+    this.customerId = customerId || '';
+    this.status = status || 10;
+    this.quantityAttemptsRegister = quantityAttemptsRegister || 0;
+    this.addresses = new Address(addresses || {});
+    this.phoneNumber = phoneNumber || '';
+    this.documentNumber = documentNumber || '';
+    this.categoryId = categoryId || '';
   }
 
   toMap() {
     return {
-      personType: this.personType,
-      category: this.category,
       name: this.name,
-      birthdate: this.birthdate,
-      motherName: this.motherName,
-      nationality: this.nationality,
       documents: this.documents,
       contacts: this.contacts,
-      addresses: this.addresses,
-      socioeconomics: this.socioeconomics,
+      addresses: this.addresses.toMap(),
       customerId: this.customerId,
       status: this.status,
       quantityAttemptsRegister: this.quantityAttemptsRegister,
     };
+  }
+
+  toMapSaveFirebase() {
+    return {
+      name: this.name,
+      documents: this.documents,
+      contacts: this.contacts,
+      addresses: this.addresses.saveFirebase(),
+      customerId: this.customerId,
+      status: this.status,
+      quantityAttemptsRegister: this.quantityAttemptsRegister,
+      phoneNumber: this.phoneNumber,
+      documentNumber: this.documentNumber,
+      categoryId: this.categoryId,
+    };
+  }
+
+  update({ addresses, status, categoryId, name }) {
+    if (status) this.status = status;
+    if (categoryId) this.categoryId = categoryId;
+    if (name) this.name = name;
+    if (addresses) this.addresses.update(addresses);
   }
 }
 
