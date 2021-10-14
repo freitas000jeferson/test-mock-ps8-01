@@ -9,8 +9,8 @@ class GetQuizApiResponse {
 
   responseAPI() {
     return {
-      apiVersion: 'dasdas',
-      transactionId: 'dasdasdas',
+      apiVersion: '1; 2020-06-11',
+      transactionId: 'a251ee23-795c-4ea2-b63f-0fc60e81f9b1',
       data: this.data.toMap(),
     };
   }
