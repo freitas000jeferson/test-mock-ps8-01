@@ -50,6 +50,6 @@ module.exports = {
       auxQuestion.answer = answer.answer;
     });
     await file.set(quiz.saveToFirebase());
-    res.send(quiz.responseAPI());
+    res.send({ data: { ...quiz.responseAPI() } });
   }),
 };
