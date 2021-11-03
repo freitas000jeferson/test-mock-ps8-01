@@ -45,6 +45,18 @@ module.exports = {
       res.status(400).send(error.message);
     }
   }),
+  update: catchAsync(async (req, res) => {
+    console.log('PUT');
+    const { id } = req.params;
+    console.log(id);
+    const file = await firestore.collection('customers').doc(id);
+    const response = await file.get();
+    if (!response.data()) return res.status(404).send('Customer not found');
+    const dataResponse = new DataResponse(response.data());
+    dataResponse.data.status = 10;
+    await file.set(dataResponse.saveFirebase());
+    return res.status(200).send('salvo');
+  }),
   updateStatus: catchAsync(async (req, res) => {
     try {
       const { data } = req.body;

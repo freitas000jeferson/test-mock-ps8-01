@@ -39,4 +39,10 @@ const registerQuiz = {
     }),
   }),
 };
-module.exports.general = { get, getQuiz, createQuiz, registerQuiz };
+
+const update = {
+  params: yup.object().shape({
+    id: yup.string(),
+  }),
+};
+module.exports.general = { get, getQuiz, createQuiz, registerQuiz, update };
