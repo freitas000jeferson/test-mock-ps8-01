@@ -37,7 +37,7 @@ class Token {
   }
 
   createExpirationTime() {
-    const addMinutes = 10;
+    const addMinutes = 1;
     const exTime = new Date();
     exTime.setMinutes(exTime.getMinutes() + addMinutes);
     this.expirationTime = Math.floor(exTime.getTime() / 1000);
@@ -72,7 +72,7 @@ class Token {
   }
 
   checkToken({ otpToken, otpSessionId }) {
-    return this.otpToken === otpToken && this.otpSessionId === otpSessionId;
+    return this.otpToken == otpToken && this.otpSessionId == otpSessionId;
   }
 
   checkTime() {
