@@ -7,7 +7,6 @@ const firestore = firebase.firestore();
 module.exports = {
   generate: catchAsync(async (req, res) => {
     const { documentNumber, phoneNumber } = req.body;
-    console.log(req.body);
     const data = new Token({
       documentNumber,
       phoneNumber,
@@ -25,11 +24,12 @@ module.exports = {
   }),
   validate: catchAsync(async (req, res) => {
     const { documentNumber, phoneNumber, otpSessionId, otpToken } = req.body;
-    console.log(req.body);
-
     const document = await firestore.collection('tokens').doc(phoneNumber);
     const get = await document.get();
     const data = new Token(get.data());
+    if (!data) {
+      res.status(404).send('Token with the given ID not found');
+    }
     const isValidToken =
       data.checkDocument(documentNumber) &&
       data.checkTime() &&
