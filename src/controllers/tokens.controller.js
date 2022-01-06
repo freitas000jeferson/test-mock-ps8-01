@@ -26,11 +26,18 @@ module.exports = {
     const { documentNumber, phoneNumber, otpSessionId, otpToken } = req.body;
     const document = await firestore.collection('tokens').doc(phoneNumber);
     const get = await document.get();
-    const data = new Token(get.data());
-    console.log(data);
-    if (!data) {
-      res.status(404).send('Token with the given ID not found');
+    if (!get.data()) {
+      res.status(404).send({
+        apiVersion: '1; 2020-06-11',
+        transactionId: 'e6e4e0f4-089d-4194-845e-78f45426f7c7',
+        data: {
+          isValid: false,
+          error: 'Token with the given ID not found',
+        },
+      });
+      return;
     }
+    const data = new Token(get.data());
     const isValidToken =
       data.checkDocument(documentNumber) &&
       data.checkTime() &&
