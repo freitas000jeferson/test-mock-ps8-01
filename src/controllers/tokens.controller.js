@@ -27,6 +27,7 @@ module.exports = {
     const document = await firestore.collection('tokens').doc(phoneNumber);
     const get = await document.get();
     const data = new Token(get.data());
+    console.log(data);
     if (!data) {
       res.status(404).send('Token with the given ID not found');
     }
