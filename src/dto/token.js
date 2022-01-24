@@ -37,7 +37,7 @@ class Token {
   }
 
   createExpirationTime() {
-    const addMinutes = 1;
+    const addMinutes = 10;
     const exTime = new Date();
     exTime.setMinutes(exTime.getMinutes() + addMinutes);
     this.expirationTime = Math.floor(exTime.getTime() / 1000);
