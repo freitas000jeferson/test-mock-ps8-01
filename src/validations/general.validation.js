@@ -39,10 +39,33 @@ const registerQuiz = {
     }),
   }),
 };
+const createScanning = {
+  body: yup.object().shape({
+    data: yup.array().of(
+      yup.object().shape({
+        field: yup.string(),
+        value: yup.string(),
+      })
+    ),
+    attachments: yup.array().of(
+      yup.object().shape({
+        type: yup.string(),
+        attachment: yup.string(),
+      })
+    ),
+  }),
+};
 
 const update = {
   params: yup.object().shape({
     id: yup.string(),
   }),
 };
-module.exports.general = { get, getQuiz, createQuiz, registerQuiz, update };
+module.exports.general = {
+  get,
+  getQuiz,
+  createQuiz,
+  registerQuiz,
+  update,
+  createScanning,
+};
