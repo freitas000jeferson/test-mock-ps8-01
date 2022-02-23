@@ -22,7 +22,8 @@ if (process.env.NODE_ENV !== 'test') {
   app.use(morgan.successHandler);
   app.use(morgan.errorHandler);
 }
-
+app.use(express.json({ limit: '50mb', extended: true }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use(helmet());
 app.use(cors(corsOptions));
 app.use(express.json());

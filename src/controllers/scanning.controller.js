@@ -10,7 +10,6 @@ module.exports = {
       const file = new DocumentsScanning(req.body);
 
       const data = file.toJson();
-      console.log('----------');
       console.log(data);
       await firestore
         .collection('scanning')
@@ -23,11 +22,12 @@ module.exports = {
         data: {
           protocol: 'ACBC1233123123',
           message: 'Registro cadastrado com sucesso',
-          status: '1',
+          status: 1,
           recordCode: data.phoneNumber,
         },
       });
     } catch (error) {
+      console.log(error);
       res.status(400).send(error.message);
     }
   }),
