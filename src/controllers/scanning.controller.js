@@ -8,11 +8,15 @@ module.exports = {
   save: catchAsync(async (req, res) => {
     try {
       const file = new DocumentsScanning(req.body);
+
       const data = file.toJson();
+      console.log('----------');
+      console.log(data);
       await firestore
         .collection('scanning')
         .doc(`${data.phoneNumber}`)
         .set(data);
+
       res.status(200).send({
         apiVersion: '1;2021-06-14',
         transactionId: 'e6e4e0f4-089d-4194-845e-78f45426f7c7',
