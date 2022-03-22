@@ -5,11 +5,15 @@ class DocumentsScanning {
     this.fieldPhoneNumber = data.data.find(
       (element) => element.field === 'MSISDN'
     );
+    this.fieldDocumentNumber = data.data.find(
+      (element) => element.field === 'Número do CPF'
+    );
   }
 
   toJson() {
     return {
       phoneNumber: this.fieldPhoneNumber.value,
+      documentNumber: this.fieldDocumentNumber.value,
       data: this.data,
       attachments: this.attachments.map((att) => att.type),
     };
