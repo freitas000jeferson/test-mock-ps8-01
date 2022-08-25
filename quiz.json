@@ -1,0 +1,89 @@
+[
+  {
+    "data": {
+      "documentNumber": "07429818358",
+      "phoneNumber": "11993400830",
+      "questionnaireId": "123123",
+      "questions": [
+        {
+          "id": "ESTADO_CPF",
+          "question": "Qual o Estado do seu CPF?",
+          "orderQuestionDisplay": 1,
+          "numberTimesQuestionDisplayed": 0,
+          "status": "NAO_EXIBIDA",
+          "rightAnswer": "1",
+          "rightQuestion": "Ceará",
+          "answer": "",
+          "possibleAnswers": [
+            {
+              "possibleAnswer": "1",
+              "possibleQuestion": "Ceará"
+            },
+            {
+              "possibleAnswer": "2",
+              "possibleQuestion": "Minas Gerais"
+            },
+            {
+              "possibleAnswer": "3",
+              "possibleQuestion": "São Paulo"
+            }
+          ]
+        },
+        {
+          "id": "IDADE",
+          "question": "Qual é a sua idade?",
+          "orderQuestionDisplay": 1,
+          "numberTimesQuestionDisplayed": 0,
+          "status": "NAO_EXIBIDA",
+          "rightAnswer": "2",
+          "rightQuestion": "21",
+          "answer": "",
+          "possibleAnswers": [
+            {
+              "possibleAnswer": "1",
+              "possibleQuestion": "55"
+            },
+            {
+              "possibleAnswer": "2",
+              "possibleQuestion": "21"
+            },
+            {
+              "possibleAnswer": "3",
+              "possibleQuestion": "32"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "categoryId": "ATIVACAO_PRE_PAGO",
+      "telephoneNumber": "11993400830",
+      "documentNumber": "07429818358",
+      "questionnaireChannel": "DIGITAL"
+    }
+  },
+  {
+    "data": {
+      "categoryId": "ATIVACAO_PRE_PAGO",
+      "telephoneNumber": "11993400830",
+      "documentNumber": "07429818358",
+      "questionnaireChannel": "DIGITAL",
+      "questions": [
+        {
+          "id": "ESTADO_CPF",
+          "numberTimesQuestionDisplayed": 1,
+          "status": "RESPONDIDA_COM_SUCESSO",
+          "answer": "1"
+        },
+        {
+          "id": "IDADE",
+          "numberTimesQuestionDisplayed": 1,
+          "status": "RESPONDIDA_COM_SUCESSO",
+          "answer": "2"
+        }
+      ]
+    }
+  }
+]
