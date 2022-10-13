@@ -6,7 +6,9 @@ class DocumentsScanning {
       (element) => element.field === 'MSISDN'
     );
     this.fieldDocumentNumber = data.data.find(
-      (element) => element.field === 'Número do CPF'
+      (element) =>
+        element.field === 'Número do CPF' ||
+        element.field === 'Número do CPF/CNPJ'
     );
   }
 

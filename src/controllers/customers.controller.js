@@ -86,4 +86,19 @@ module.exports = {
       return res.status(400).send(error.message);
     }
   }),
+  updateAll: catchAsync(async (req, res) => {
+    try {
+      const file = await firestore.collection('customers');
+      const snapshot = await file.get();
+      console.log(snapshot.docs.length);
+      const promises = [];
+      snapshot.docs.forEach(async (doc) => {
+        const dataResponse = new DataResponse(doc.data());
+        dataResponse.data.status = 10;
+        // console.log(dataResponse.saveFirebase());
+        promises.push(doc.ref.set({ ...dataResponse.saveFirebase() }));
+      });
+      return Promise.all(promises);
+    } catch (error) {}
+  }),
 };

@@ -48,6 +48,7 @@ class Address {
       poBoxAddress: this.poBoxAddress,
       cityName: this.cityName,
       state: this.state,
+      flagValidAddress: this.flagValidAddress,
       postcode: this.postcode,
     };
   }
