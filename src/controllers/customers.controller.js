@@ -95,10 +95,15 @@ module.exports = {
       snapshot.docs.forEach(async (doc) => {
         const dataResponse = new DataResponse(doc.data());
         dataResponse.data.status = 10;
+        dataResponse.data.addresses.flagValidAddress = false;
         // console.log(dataResponse.saveFirebase());
         promises.push(doc.ref.set({ ...dataResponse.saveFirebase() }));
       });
-      return Promise.all(promises);
-    } catch (error) {}
+      await Promise.all(promises);
+      res.send('Record saved successfuly: CUSTOMERS');
+    } catch (error) {
+      console.log(error);
+      res.status(400).send(`Error in save CUSTOMERS: ${error}`);
+    }
   }),
 };
