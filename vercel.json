@@ -1,6 +1,7 @@
 {
+  "name": "mock-ps8-01",
   "version": 2,
-  "builds": [{ "src": "./app.js", "use": "@vercel/node" }],
+  "builds": [{ "src": "*.js", "use": "@vercel/node" }],
   "routes": [
     {
       "src": "/(.*)",
