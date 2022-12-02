@@ -5,7 +5,7 @@ dotenv.config({ path: path.join(__dirname, '../../../.env') });
 
 module.exports = {
   env: process.env.NODE_ENV,
-  port: process.env.PORT,
+  port: process.env.PORT || 3000,
   clientURL: process.env.CLIENT_URL,
   version: 'v1',
   secret: process.env.JWT_SECRET,
