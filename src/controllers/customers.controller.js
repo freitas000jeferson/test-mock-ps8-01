@@ -63,6 +63,9 @@ module.exports = {
       const { contacts } = data;
       const notifyCustomerUpdate = new NotifyCustomerUpdate(data);
 
+      console.log('OOOOOOOOOOOO');
+      console.log(contacts);
+
       if (contacts.length === 0)
         return res.status(400).send('Not phone number');
       const [{ phoneNumber }] = contacts;
