@@ -67,10 +67,14 @@ class Customers {
   update({ addresses, status, categoryId, name, contacts }) {
     if (status) this.status = status;
 
-    if (status === 23) this.status = 4;
+    if (status === 23) {
+      this.status = 4;
+      this.addresses.flagValidAddress = false;
+    }
     if (categoryId) this.categoryId = categoryId;
     if (name) this.name = name;
-    if (addresses) this.addresses.update(addresses);
+    if (addresses)
+      this.addresses.update({ flagValidAddress: true, ...addresses });
     if (contacts[0].email && contacts[0].email !== this.contacts[0].email)
       this.contacts[0].email = contacts[0].email;
   }
