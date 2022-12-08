@@ -7,7 +7,7 @@ module.exports = {
     res.status(StatusCodes.OK).json({
       message: 'api ok',
       port,
-      version,
+      version: `${version}.0.1`,
       clientURL,
       date: new Date().toISOString(),
     })
