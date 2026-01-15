@@ -1,0 +1,12 @@
+# GET https://localhost:3001/api/v1/mobilesubscribers 
+# GET https://1847a18d-b121-44bd-9c06-5344145e4848.mock.pstmn.io/mobilesubscribers
+
+# GET http://localhost:3000/api/v1/customer/isPendingRecharge
+# x-client-key: "Basic Q1JFREVOQ0lBTFBSRVBBR086OXkkQiZFKUhATWJRZVRoVw=="
+# x-client-auth: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoid0ZuNHRDdnMzS2k2blMxdjIybkxjQVVhYlFhYzY2M00zZzNoOEgzWW8xZWdxaFRmOGtQdHllb2FyUW5kYmN2TUt5bWpyM2lXdkg3ZHlmUTVrTFU3TUg3RFUyQW5FTVZSRHJzZk42NDRVUkZ2eG5YTERWV2JuejV3U3pnazJLSjJSY1pCaVFTZHdWZ1U4QWpTYm5ycmNYakJLZGFDMWdIRTVZR3FWb1l0b25EOXBOUnU2OG5YMXNNdVVGSk1haTI1dWZHRVZLZWh2aFZZbkpvWWpGZzV3IiwiaWF0IjoxNzUwMTgzNTQ0LCJleHAiOjE3NTAyNjk5NDR9.AIUNLXA4AJkP-NwlcTTIOPDJrkPzSvyrRdflEBgniOM"
+
+# update all customers
+PUT http://localhost:3000/api/v1/customers/all
+Content-Type: application/json
+
+

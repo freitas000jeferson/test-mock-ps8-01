@@ -6,6 +6,18 @@ const NotifyCustomerUpdate = require('../dto/notifyCustomerUpdate');
 
 const firestore = firebase.firestore();
 
+function cleanFirestoreData(obj) {
+  return JSON.parse(
+    JSON.stringify(obj, (key, value) =>
+      value === undefined ||
+      Number.isNaN(value) ||
+      value === Infinity ||
+      value === -Infinity
+        ? null
+        : value
+    )
+  );
+}
 module.exports = {
   add: catchAsync(async (req, res) => {
     try {
@@ -91,21 +103,23 @@ module.exports = {
   }),
   updateAll: catchAsync(async (req, res) => {
     try {
-      const file = await firestore.collection('customers');
-      const snapshot = await file.get();
-      console.log(snapshot.docs.length);
-      const promises = [];
-      snapshot.docs.forEach(async (doc) => {
+      const snapshot = await firestore.collection('customers').get();
+      console.log("total docs:",snapshot.docs.length);
+
+      const promises = snapshot.docs.map((doc) => {
         const dataResponse = new DataResponse(doc.data());
         dataResponse.data.status = 10;
+        dataResponse.data.addresses = dataResponse.data.addresses ?? {};
         dataResponse.data.addresses.flagValidAddress = false;
         // console.log(dataResponse.saveFirebase());
-        promises.push(doc.ref.set({ ...dataResponse.saveFirebase() }));
+        const payload = cleanFirestoreData(dataResponse.saveFirebase());
+        console.log('=> Payload', payload);
+        return doc.ref.set({ ...payload }, { merge: true });
       });
-      await Promise.all(promises);
+      await Promise.allSettled(promises);
       res.send('Record saved successfuly: CUSTOMERS');
     } catch (error) {
-      console.log(error);
+      console.error('=> Error', error);
       res.status(400).send(`Error in save CUSTOMERS: ${error}`);
     }
   }),

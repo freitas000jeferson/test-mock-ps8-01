@@ -1,4 +1,3 @@
-'use strict';
 const dotenv = require('dotenv');
 const path = require('path');
 // const assert = require('assert');
@@ -27,11 +26,13 @@ const firebaseConfig = {
   appId: APP_ID,
   measurementId: MEASUREMENT_ID,
 };
+
+console.log('=> Firebase Config', firebaseConfig);
 // assert(PORT, "PORT is required");
 // assert(HOST, "HOST is required");
 module.exports = {
   port: PORT,
   host: HOST,
   url: HOST_URL,
-  firebaseConfig: firebaseConfig,
+  firebaseConfig,
 };
