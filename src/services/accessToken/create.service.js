@@ -14,7 +14,7 @@ module.exports = {
       },
       {
         algorithm: 'HS384',
-        expiresIn: accessTokenExpiresIn,
+        expiresIn: accessTokenExpiresIn || '7d',
       }
     );
 
@@ -30,6 +30,6 @@ module.exports = {
       expiresIn: refreshTokenExpiresIn,
     });
 
-    return { token, refreshToken };
+    return { token, refreshToken, expiresIn: accessTokenExpiresIn || '7d' };
   },
 };

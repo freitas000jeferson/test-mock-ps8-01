@@ -75,19 +75,22 @@ module.exports = {
       const { contacts } = data;
       const notifyCustomerUpdate = new NotifyCustomerUpdate(data);
 
-      console.log('OOOOOOOOOOOO');
+      console.log('## Notify PS8');
       console.log(contacts);
 
       if (contacts.length === 0)
         return res.status(400).send('Not phone number');
+
       const [{ phoneNumber }] = contacts;
       const file = await firestore.collection('customers').doc(phoneNumber);
+
       const response = await file.get();
       if (!response.data()) return res.status(404).send('Customer not found');
 
       const dataResponse = new DataResponse(response.data());
       dataResponse.data.update(notifyCustomerUpdate.toMap());
       await file.set(dataResponse.saveFirebase());
+
       return res.send({
         apiVersion: '1; 2020-06-11',
         transactionId: 'e6e4e0f4-089d-4194-845e-78f45426f7c7',
@@ -104,7 +107,7 @@ module.exports = {
   updateAll: catchAsync(async (req, res) => {
     try {
       const snapshot = await firestore.collection('customers').get();
-      console.log("total docs:",snapshot.docs.length);
+      console.log('total docs:', snapshot.docs.length);
 
       const promises = snapshot.docs.map((doc) => {
         const dataResponse = new DataResponse(doc.data());

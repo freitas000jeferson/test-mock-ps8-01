@@ -41,7 +41,9 @@ Object.keys(routes).forEach((key) =>
   app.use(`/api/${version}/${key}`, routes[key])
 );
 // Object.keys(routes).forEach((key) => console.log(`/api/${version}/${key}`));
-
+app.get('/favicon.ico', (req, res) => {
+  res.status(204).end();
+});
 app.use((req, res, next) => {
   next(new ApplicationError(messages.notFound('route'), StatusCodes.NOT_FOUND));
 });
